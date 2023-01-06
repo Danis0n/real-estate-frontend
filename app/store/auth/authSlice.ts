@@ -1,7 +1,6 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
 import {User} from "../../types/user";
-import {LoginResponse} from "../../types/auth/auth.response";
-import {login} from "./auth.actions";
+import {login, logout, refresh, register} from "./auth.actions";
 
 interface AuthState {
     user: User | null;
@@ -12,33 +11,70 @@ interface AuthState {
 }
 
 const initialState: AuthState = {
-    accessToken: "",
-    refreshToken: "",
+    accessToken: '',
+    refreshToken: '',
     isAuth: false,
     isLoading: false,
     user: null
 }
 
-export const AuthSlice = createSlice({
+export const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {},
-    extraReducers: {
-        [login.fulfilled.type]: (state, action: PayloadAction<LoginResponse>) => {
-            state.isAuth = true;
-            state.isLoading = false;
-            state.user = action.payload.user;
-            state.accessToken = action.payload.accessToken;
-            state.refreshToken = action.payload.refreshToken;
-        },
-        [login.pending.type]: (state) => {
-            state.isLoading = true;
-        },
-        [login.rejected.type]: (state) => {
-            state.isLoading = false;
-            state.user = null;
-        }
-    },
+    extraReducers: builder => {
+        builder.
+            addCase(login.pending, state => {
+                state.isLoading = true;
+            })
+            .addCase(login.fulfilled, (state, {payload}) => {
+                state.isAuth = true;
+                state.isLoading = false;
+                state.user = payload.user;
+                state.accessToken = payload.accessToken;
+                state.refreshToken = payload.refreshToken;
+                localStorage.setItem('token', payload.accessToken);
+            })
+            .addCase(login.rejected, state => {
+                state.isLoading = false;
+                state.user = null;
+                state.refreshToken = '';
+                state.accessToken = '';
+                localStorage.removeItem('token');
+            })
+            .addCase(logout.fulfilled, state => {
+                state.isLoading = false;
+                state.user = null;
+                state.refreshToken = '';
+                state.accessToken = '';
+                localStorage.removeItem('token');
+            })
+            .addCase(register.pending, state => {
+                state.isLoading = true;
+            })
+            .addCase(register.fulfilled, state => {
+
+            })
+            .addCase(refresh.pending, state => {
+                state.isLoading = true;
+            })
+            .addCase(refresh.fulfilled, (state, { payload }) => {
+                state.isAuth = true;
+                state.isLoading = false;
+                state.user = payload.user;
+                state.accessToken = payload.accessToken;
+                state.refreshToken = payload.refreshToken;
+                localStorage.setItem('token', payload.accessToken);
+            })
+            .addCase(refresh.rejected, state => {
+                state.isLoading = false;
+                state.user = null;
+                state.refreshToken = '';
+                state.accessToken = '';
+                localStorage.removeItem('token');
+            })
+    }
 });
 
-export default AuthSlice;
+export const authReducer = authSlice.reducer;
+export const authActions = authSlice.actions;

@@ -20,7 +20,7 @@ export interface LogoutRequest {
     accessToken: string;
 }
 
-export interface AuthRequest {
+export interface RefreshRequest {
     refreshToken: string;
 }
 
