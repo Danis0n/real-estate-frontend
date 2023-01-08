@@ -1,0 +1,7 @@
+.modal {
+  @apply top-52 left-0 right-0 bottom-0 z-50 w-full fixed overflow-x-hidden overflow-y-auto flex justify-center;
+}
+
+.content {
+  @apply relative w-full h-full max-w-md md:h-auto;
+}

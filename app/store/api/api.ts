@@ -1,26 +1,57 @@
-import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
+import {BaseQueryApi, createApi, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {API_URL} from "../../api/axios";
 import {TypeRootState} from "../store";
-import {LogoutResponse} from "../../types/auth/auth.response";
+import {LogoutResponse, RefreshResponse} from "../../types/auth/auth.response";
 import {AUTH} from "../../services/auth.service";
+import {logout} from "../auth/auth.actions";
+import {setData} from "../auth/authSlice";
+
+
+const baseQuery = fetchBaseQuery({
+    baseUrl: API_URL,
+    credentials: 'include',
+    prepareHeaders: (headers, {getState}) => {
+        const token = (getState() as TypeRootState).auth.accessToken;
+        if (token)
+            headers.set('Authorization', `Bearer ${token}`);
+        return headers;
+    }
+})
+
+const baseQueryWithReauth = async (args: string | FetchArgs, api: BaseQueryApi, extraOptions: {}) => {
+    let result = await baseQuery(args, api, extraOptions)
+
+
+    if (result.error && result.error.status === 401) {
+        const refreshResult = await baseQuery(`${AUTH}/refresh`, api, extraOptions)
+        if (refreshResult.data) {
+            api.dispatch(setData({...refreshResult.data}));
+            result = await baseQuery(args, api, extraOptions);
+        } else {
+            api.dispatch(logout());
+        }
+    }
+    return result;
+}
 
 export const api = createApi({
     reducerPath: 'api',
     tagTypes: ['Auth'],
-    baseQuery: fetchBaseQuery({
-        baseUrl: API_URL,
-        credentials: 'include',
-        prepareHeaders: (headers, {getState}) => {
-            const token = (getState() as TypeRootState).auth.accessToken;
-            if (token)
-                headers.set('Authorization', `Bearer ${token}`);
-            return headers;
-        }
-    }),
+    baseQuery: baseQueryWithReauth,
     endpoints: builder => ({
-        logout: builder.query<LogoutResponse, any>({
-            query: () => `${AUTH}/logout`,
-            providesTags: () => [{type: 'Auth'}],
+        logout: builder.mutation<LogoutResponse, any>({
+            query: () => ({
+                url: `${AUTH}/logout`,
+                method: 'POST',
+            }),
+            invalidatesTags: ['Auth']
+        }),
+        refresh: builder.query<RefreshResponse, any>({
+            query: () => ({
+                url: `${AUTH}/refresh`,
+            }),
+            providesTags: ['Auth']
         })
     }),
 })
+

@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {User} from "../../types/user";
 import {login, logout, refresh, register} from "./auth.actions";
+import {RefreshResponse} from "../../types/auth/auth.response";
 
 interface AuthState {
     user: User | null;
@@ -21,7 +22,16 @@ const initialState: AuthState = {
 export const authSlice = createSlice({
     name: 'auth',
     initialState,
-    reducers: {},
+    reducers: {
+        setData: (state, action) => {
+            state.isAuth = true;
+            state.isLoading = false;
+            state.user = action.payload.user;
+            state.accessToken = action.payload.accessToken;
+            state.refreshToken = action.payload.refreshToken;
+            localStorage.setItem('token', action.payload.accessToken);
+        }
+    },
     extraReducers: builder => {
         builder.
             addCase(login.pending, state => {
@@ -75,6 +85,8 @@ export const authSlice = createSlice({
             })
     }
 });
+
+export const { setData } = authSlice.actions;
 
 export const authReducer = authSlice.reducer;
 export const authActions = authSlice.actions;
