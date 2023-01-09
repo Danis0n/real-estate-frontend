@@ -11,6 +11,7 @@ import Login from "../../ui/form/login/Login";
 import {LoginRequest} from "../../../types/auth/auth.request";
 import Options from '../../../../public/options.svg'
 import {IHeaderItem} from "./header.interface";
+import LogoutButton from "../../ui/logout-buttom/LogoutButton";
 
 interface HeaderProps {
     items: IHeaderItem[];
@@ -18,18 +19,15 @@ interface HeaderProps {
 
 const Header: FC<HeaderProps> = (items: HeaderProps) => {
     const { isAuth } = useAuth();
-    const { login } = useActions();
 
     const [isModal, setIsModal] = useState<boolean>(false);
-
-    const handleLogin = (data: LoginRequest) => {
-        login(data);
-    }
 
     return <>
         <nav className={styles.parent}>
             <div className={styles.main}>
+                <Link href={'/'}>
                     <Image src='logo.svg' className="mr-3 h-6 sm:h-9" alt="Real Estate logo" width={200} height={200}/>
+                </Link>
                 <div>
                     <ul className={styles.support}>
                         <li><div className={styles.item}>Поддержка:</div></li>
@@ -52,12 +50,13 @@ const Header: FC<HeaderProps> = (items: HeaderProps) => {
                         <ButtonGreen onClick={() => {}}>
                             <Image src={Options} alt={'options'} width={24} height={24}/>
                         </ButtonGreen>
+                        <LogoutButton>Выйти</LogoutButton>
                     </div>
                     :
                     <div>
                         <ButtonGrey onClick={() => setIsModal(true)}>Войти</ButtonGrey>
                         <Modal isVisible={isModal} setVisible={setIsModal}>
-                            <Login login={handleLogin}/>
+                            <Login/>
                         </Modal>
                         <ButtonGreen onClick={() => {}}>Регистрация</ButtonGreen>
                     </div>

@@ -4,10 +4,10 @@ import Heart from '../../../../public/heart.svg'
 
 export const headerItems: IHeaderItem[] = [
 {
-    link: '/favorite',
+    link: '/notifications',
     icon: Bell
 },
 {
-    link: '/notifications',
+    link: '/favorite',
     icon: Heart
 }]

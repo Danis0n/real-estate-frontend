@@ -29,7 +29,6 @@ export const authSlice = createSlice({
             state.user = action.payload.user;
             state.accessToken = action.payload.accessToken;
             state.refreshToken = action.payload.refreshToken;
-            localStorage.setItem('token', action.payload.accessToken);
         }
     },
     extraReducers: builder => {
@@ -43,21 +42,19 @@ export const authSlice = createSlice({
                 state.user = payload.user;
                 state.accessToken = payload.accessToken;
                 state.refreshToken = payload.refreshToken;
-                localStorage.setItem('token', payload.accessToken);
             })
             .addCase(login.rejected, state => {
                 state.isLoading = false;
                 state.user = null;
                 state.refreshToken = '';
                 state.accessToken = '';
-                localStorage.removeItem('token');
             })
             .addCase(logout.fulfilled, state => {
                 state.isLoading = false;
+                state.isAuth = false;
                 state.user = null;
                 state.refreshToken = '';
                 state.accessToken = '';
-                localStorage.removeItem('token');
             })
             .addCase(register.pending, state => {
                 state.isLoading = true;
@@ -74,14 +71,12 @@ export const authSlice = createSlice({
                 state.user = payload.user;
                 state.accessToken = payload.accessToken;
                 state.refreshToken = payload.refreshToken;
-                localStorage.setItem('token', payload.accessToken);
             })
             .addCase(refresh.rejected, state => {
                 state.isLoading = false;
                 state.user = null;
                 state.refreshToken = '';
                 state.accessToken = '';
-                localStorage.removeItem('token');
             })
     }
 });

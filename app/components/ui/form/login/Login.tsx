@@ -2,15 +2,18 @@ import React, {FC, useState} from 'react';
 import ButtonGreen from "../../button/ButtonGreen";
 import Input from "../../input/Input";
 import {LoginRequest} from "../../../../types/auth/auth.request";
+import {useActions} from "../../../../hooks/useAction";
 
-interface LoginType {
-    login: (data: LoginRequest) => void
-}
+const Login: FC = () => {
 
-const Login: FC<LoginType> = (props: LoginType) => {
+    const { login } = useActions();
 
-    const [login, setLogin] = useState<string>('');
-    const [password, setPassword] = useState<string>('');
+    const handleLogin = (data: LoginRequest) => {
+        login(data);
+    }
+
+    const [loginVal, setLoginVal] = useState<string>('');
+    const [passwordVal, setPasswordVal] = useState<string>('');
 
     return (
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
@@ -20,12 +23,12 @@ const Login: FC<LoginType> = (props: LoginType) => {
                     <div>
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ваш логин</label>
                         <Input type="text"
-                               placeholder="Логин" isRequired={true} value={login} setValue={setLogin}/>
+                               placeholder="Логин" isRequired={true} value={loginVal} setValue={setLoginVal}/>
                     </div>
                     <div>
                         <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ваш пароль</label>
                         <Input type="password"
-                               placeholder="••••••••" isRequired={true} value={password} setValue={setPassword}/>
+                               placeholder="••••••••" isRequired={true} value={passwordVal} setValue={setPasswordVal}/>
                     </div>
                     <div className="flex justify-between">
                         <a href="#"
@@ -33,7 +36,7 @@ const Login: FC<LoginType> = (props: LoginType) => {
                     </div>
                     <div className='text-center'>
                     <ButtonGreen
-                        onClick={() => props.login({login: login, password: password})}
+                        onClick={() => handleLogin({login: loginVal, password: passwordVal})}
                     >Войти в аккаунт</ButtonGreen>
                     </div>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">

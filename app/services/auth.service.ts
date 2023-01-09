@@ -1,5 +1,5 @@
 import {LoginRequest, RegisterRequest} from "../types/auth/auth.request";
-import {RefreshResponse, LoginResponse, RegisterResponse} from "../types/auth/auth.response";
+import {RefreshResponse, LoginResponse, RegisterResponse, LogoutResponse} from "../types/auth/auth.response";
 import {axiosClassic} from "../api/axios";
 
 export const AUTH = 'auth'
@@ -11,6 +11,14 @@ export const AuthService = {
                 `/${AUTH}/login`,
                 data,
                 { withCredentials: true },
+            );
+        return response.data;
+    },
+
+    async logout(): Promise<LogoutResponse> {
+        const response =
+            await axiosClassic.post<LogoutResponse>(
+                `/${AUTH}/logout`
             );
         return response.data;
     },

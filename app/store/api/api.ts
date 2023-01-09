@@ -1,10 +1,11 @@
-import {BaseQueryApi, createApi, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
+import {BaseQueryApi, createApi, FetchArgs, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 import {API_URL} from "../../api/axios";
 import {TypeRootState} from "../store";
 import {LogoutResponse, RefreshResponse} from "../../types/auth/auth.response";
 import {AUTH} from "../../services/auth.service";
 import {logout} from "../auth/auth.actions";
 import {setData} from "../auth/authSlice";
+import {IPost} from "../../types/post/post.interface";
 
 
 const baseQuery = fetchBaseQuery({
@@ -21,7 +22,6 @@ const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth = async (args: string | FetchArgs, api: BaseQueryApi, extraOptions: {}) => {
     let result = await baseQuery(args, api, extraOptions)
 
-
     if (result.error && result.error.status === 401) {
         const refreshResult = await baseQuery(`${AUTH}/refresh`, api, extraOptions)
         if (refreshResult.data) {
@@ -36,7 +36,7 @@ const baseQueryWithReauth = async (args: string | FetchArgs, api: BaseQueryApi, 
 
 export const api = createApi({
     reducerPath: 'api',
-    tagTypes: ['Auth'],
+    tagTypes: ['Auth', 'User', 'Post'],
     baseQuery: baseQueryWithReauth,
     endpoints: builder => ({
         logout: builder.mutation<LogoutResponse, any>({
@@ -44,14 +44,19 @@ export const api = createApi({
                 url: `${AUTH}/logout`,
                 method: 'POST',
             }),
-            invalidatesTags: ['Auth']
+            invalidatesTags: () => [{type: 'Auth'}]
         }),
         refresh: builder.query<RefreshResponse, any>({
             query: () => ({
                 url: `${AUTH}/refresh`,
             }),
-            providesTags: ['Auth']
-        })
+            providesTags: () => [{type: 'Auth'}]
+        }),
+        // getProfile: builder.query<IPost,any>({
+        //     query: () => ({
+        //         url: `${'user'}/profile`
+        //     })
+        // })
     }),
 })
 

@@ -1,5 +1,15 @@
-import {IPost} from "../../../types/post/post.interface";
+interface INav {
+    title: string;
+    link: string;
+}
+
+interface IType {
+    title: string;
+    value: string;
+}
 
 export interface IHome {
-    randomPosts: IPost[]
+    nav: INav[];
+    types: IType[];
+    cities: IType[];
 }
