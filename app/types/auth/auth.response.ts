@@ -1,4 +1,4 @@
-import {User} from "../user";
+import {IUser} from "../user.interface";
 
 export interface UpdatePasswordResponse {
     status: number;
@@ -25,7 +25,7 @@ export interface ConfirmResponse {
 export interface RefreshResponse {
     accessToken: string;
     refreshToken: string;
-    user: User;
+    user: IUser;
     error: string;
 }
 
@@ -41,7 +41,7 @@ export interface RegisterResponse {
 export interface LoginResponse {
     accessToken: string;
     refreshToken: string;
-    user: User | null;
+    user: IUser | null;
     error: string;
     status: number;
 }

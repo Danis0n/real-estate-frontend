@@ -1,10 +1,10 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {User} from "../../types/user";
+import {IUser} from "../../types/user.interface";
 import {login, logout, refresh, register} from "./auth.actions";
 import {RefreshResponse} from "../../types/auth/auth.response";
 
 interface AuthState {
-    user: User | null;
+    user: IUser | null;
     isLoading: boolean;
     isAuth: boolean;
     accessToken: string;

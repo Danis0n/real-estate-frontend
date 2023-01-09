@@ -1,17 +1,17 @@
-export interface User {
+export interface IUser {
     id: string;
     email: string;
     siteLink: string;
     phone: string;
-    userInfo: UserInfo;
-    userLogin: UserLogin;
-    userUr: UserUrInfo;
+    userInfo: IUserInfo;
+    userLogin: IUserLogin;
+    userUr: IUserUrInfo;
     imageUrl: string;
     date: string;
-    roles: Role[];
+    roles: IRole[];
 }
 
-export interface UserInfo {
+export interface IUserInfo {
     firstName: string;
     lastName: string;
     birthDate: string;
@@ -20,17 +20,17 @@ export interface UserInfo {
     enabled: boolean;
 }
 
-export interface UserUrInfo {
+export interface IUserUrInfo {
     inn: string;
     description: string;
     link: string;
     address: string;
 }
 
-export interface UserLogin {
+export interface IUserLogin {
     login: string;
 }
 
-export interface Role {
+export interface IRole {
     name: string;
 }

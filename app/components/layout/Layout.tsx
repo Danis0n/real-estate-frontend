@@ -3,16 +3,9 @@ import Head from "next/head";
 import Sidebar from "../sidebar/Sidebar";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import {useActions} from "../../hooks/useAction";
+import {headerItems} from "./header/header.data";
 
 const Layout: FC<PropsWithChildren<{title: string}>> = ({title, children}) => {
-
-    const { refresh } = useActions();
-
-    useEffect(() => {
-        if (localStorage.getItem('token'))
-            refresh();
-    }, [])
 
     return <>
         <Head>
@@ -21,7 +14,7 @@ const Layout: FC<PropsWithChildren<{title: string}>> = ({title, children}) => {
         <main>
             <Sidebar/>
             <section>
-                <Header/>
+                <Header items={headerItems}/>
                 <div>{children}</div>
                 <Footer/>
             </section>
