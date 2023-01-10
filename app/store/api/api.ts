@@ -36,7 +36,7 @@ const baseQueryWithReauth = async (args: string | FetchArgs, api: BaseQueryApi, 
 
 export const api = createApi({
     reducerPath: 'api',
-    tagTypes: ['Auth', 'User', 'Post'],
+    tagTypes: ['Auth', 'User', 'Post', 'Image'],
     baseQuery: baseQueryWithReauth,
     endpoints: builder => ({
         logout: builder.mutation<LogoutResponse, any>({
@@ -52,11 +52,7 @@ export const api = createApi({
             }),
             providesTags: () => [{type: 'Auth'}]
         }),
-        // getProfile: builder.query<IPost,any>({
-        //     query: () => ({
-        //         url: `${'user'}/profile`
-        //     })
-        // })
+
     }),
 })
 

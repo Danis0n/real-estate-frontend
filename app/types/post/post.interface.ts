@@ -9,7 +9,7 @@ export interface IPost {
     city: string;
     deal: string;
     type: string;
-    info: IPostInfo | undefined;
+    info: IPostInfo;
     images: IImage[];
     locked: boolean;
     lockedByAdmin: boolean;

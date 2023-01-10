@@ -3,7 +3,7 @@ import {TypeComponentAuthFields} from "./private-route.interface";
 import dynamic from "next/dynamic";
 
 const  DynamicCheckRole = dynamic(() => import('./CheckRole'), {
-    ssr: false
+    ssr: false,
 })
 
 const AuthProvide: FC<PropsWithChildren<TypeComponentAuthFields>> = (

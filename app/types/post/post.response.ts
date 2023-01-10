@@ -3,7 +3,7 @@ import {IPost} from "./post.interface";
 export interface FindOnePostResponse {
     status: number;
     error: string;
-    post: IPost | undefined;
+    post: IPost;
 }
 
 export interface FindAllPostResponse {

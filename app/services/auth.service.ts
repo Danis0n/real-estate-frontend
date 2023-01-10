@@ -2,7 +2,7 @@ import {LoginRequest, RegisterRequest} from "../types/auth/auth.request";
 import {RefreshResponse, LoginResponse, RegisterResponse, LogoutResponse} from "../types/auth/auth.response";
 import {axiosClassic} from "../api/axios";
 
-export const AUTH = 'auth'
+export const AUTH = 'auth';
 
 export const AuthService = {
     async login(data: LoginRequest): Promise<LoginResponse> {

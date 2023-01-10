@@ -5,10 +5,8 @@ import Link from 'next/link';
 import ButtonGreen from "../../ui/button/ButtonGreen";
 import ButtonGrey from "../../ui/button/ButtonGrey";
 import { useAuth } from "../../../hooks/useAuth";
-import { useActions } from "../../../hooks/useAction";
 import Modal from "../../ui/modal/Modal";
 import Login from "../../ui/form/login/Login";
-import {LoginRequest} from "../../../types/auth/auth.request";
 import Options from '../../../../public/options.svg'
 import {IHeaderItem} from "./header.interface";
 import LogoutButton from "../../ui/logout-buttom/LogoutButton";
@@ -26,7 +24,7 @@ const Header: FC<HeaderProps> = (items: HeaderProps) => {
         <nav className={styles.parent}>
             <div className={styles.main}>
                 <Link href={'/'}>
-                    <Image src='logo.svg' className="mr-3 h-6 sm:h-9" alt="Real Estate logo" width={200} height={200}/>
+                    <Image src={Options} className="mr-3 h-6 sm:h-9" alt="Real Estate logo" width={200} height={200}/>
                 </Link>
                 <div>
                     <ul className={styles.support}>
