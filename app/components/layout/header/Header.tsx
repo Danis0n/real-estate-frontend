@@ -10,6 +10,7 @@ import Login from "../../ui/form/login/Login";
 import Options from '../../../../public/options.svg'
 import {IHeaderItem} from "./header.interface";
 import LogoutButton from "../../ui/logout-buttom/LogoutButton";
+import Logo from '../../../../public/logo.svg';
 
 interface HeaderProps {
     items: IHeaderItem[];
@@ -24,7 +25,7 @@ const Header: FC<HeaderProps> = (items: HeaderProps) => {
         <nav className={styles.parent}>
             <div className={styles.main}>
                 <Link href={'/'}>
-                    <Image src={Options} className="mr-3 h-6 sm:h-9" alt="Real Estate logo" width={200} height={200}/>
+                    <Image src={Logo} className="mr-3 h-6 sm:h-9" alt="Real Estate logo" width={200} height={200}/>
                 </Link>
                 <div>
                     <ul className={styles.support}>

@@ -8,6 +8,7 @@ import ButtonGreen from "../../ui/button/ButtonGreen";
 import SearchInput from "../../ui/search-input/SearchInput";
 import {text} from "stream/consumers";
 import Select from "../../ui/select/Select";
+import {useAuth} from "../../../hooks/useAuth";
 
 interface HomeData {
     props: IHome;

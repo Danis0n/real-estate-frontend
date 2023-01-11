@@ -8,7 +8,7 @@ export interface IUser {
     userUr: IUserUrInfo;
     imageUrl: string;
     date: string;
-    roles: IRole[];
+    roles: string[];
 }
 
 export interface IUserInfo {

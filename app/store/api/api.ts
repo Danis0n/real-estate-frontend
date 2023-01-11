@@ -5,7 +5,6 @@ import {LogoutResponse, RefreshResponse} from "../../types/auth/auth.response";
 import {AUTH} from "../../services/auth.service";
 import {logout} from "../auth/auth.actions";
 import {setData} from "../auth/authSlice";
-import {IPost} from "../../types/post/post.interface";
 
 
 const baseQuery = fetchBaseQuery({
@@ -27,6 +26,10 @@ const baseQueryWithReauth = async (args: string | FetchArgs, api: BaseQueryApi, 
         if (refreshResult.data) {
             api.dispatch(setData({...refreshResult.data}));
             result = await baseQuery(args, api, extraOptions);
+
+            if (result.meta && result.meta.request.url.includes('logout'))
+                api.dispatch(logout());
+
         } else {
             api.dispatch(logout());
         }

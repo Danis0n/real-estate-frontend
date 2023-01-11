@@ -6,7 +6,7 @@ export const imageApi = api.injectEndpoints({
     endpoints: builder => ({
         getImage: builder.query<ImageViewResponse, string>({
             query: (imageUUID) => ({
-                url: `${IMAGE}/get/${imageUUID}`
+                url: `/${IMAGE}/display/${imageUUID}`
             }),
             providesTags: () => [{type: 'Image'}]
         }),

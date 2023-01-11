@@ -35,6 +35,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({params}) => {
     try {
         const { data: post } = await PostService.getPostById(String(params?.id));
+
+        if (post == null) {
+            return {
+                props: {
+                    post: {} as IPost,
+                    images: {} as string[],
+                } as IPostPage
+            }
+        }
         const currentPost: IPost = post.post;
 
         let images: string[] = [];

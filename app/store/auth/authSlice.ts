@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {IUser} from "../../types/user.interface";
+import {IUser} from "../../types/user/user.interface";
 import {login, logout, refresh, register} from "./auth.actions";
 import {RefreshResponse} from "../../types/auth/auth.response";
 
