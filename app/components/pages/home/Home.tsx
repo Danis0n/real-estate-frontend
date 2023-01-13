@@ -1,14 +1,12 @@
 import React, {FC} from 'react';
 import Layout from "../../layout/Layout";
 import {IHome} from "./home.interface";
-import styles from './Home.module.scss'
 import ButtonGrey from "../../ui/button/ButtonGrey";
 import Link from "next/link";
 import ButtonGreen from "../../ui/button/ButtonGreen";
 import SearchInput from "../../ui/search-input/SearchInput";
 import {text} from "stream/consumers";
 import Select from "../../ui/select/Select";
-import {useAuth} from "../../../hooks/useAuth";
 
 interface HomeData {
     props: IHome;
@@ -23,12 +21,12 @@ const Home: FC<HomeData> = (props: HomeData) => {
                     <div className="mt-20 flex gap-2">
                         {props.props.nav.map((navItem) => {
                             return (
+                                <Link key={navItem.title} href={navItem.link} className='text-base'>
                                 <ButtonGrey key={navItem.title} onClick={() => {
                                 }}>
-                                    <Link href={navItem.link} className='text-base'>
                                         {navItem.title}
-                                    </Link>
                                 </ButtonGrey>
+                                </Link>
                             )
                         })}
                         <ButtonGrey onClick={() => {
@@ -47,15 +45,14 @@ const Home: FC<HomeData> = (props: HomeData) => {
                         среди множества объявлений
                     </div>
                     <div className='text-center'>
-                        <ButtonGreen onClick={() => {
-                        }}>
-                            <div className='text-xl'>Узнать больше</div>
-                        </ButtonGreen>
+                        <Link href={'/posts'} className=''>
+                            <ButtonGreen onClick={() => {}}><div className={'text-xl'}>Узнать больше</div></ButtonGreen>
+                        </Link>
                     </div>
                 </div>
             </div>
             <div className='w-full mb-20'>
-                <div className='rounded-lg shadow-lg left-1/2 w-1/2 translate-x-1/2 -mt-10 bg-primary-700'>
+                <div className='mr-auto ml-auto rounded-lg shadow-lg w-[1200px] -mt-10 bg-primary-700'>
                     <div className="flex gap-10 p-5">
                         <div>
                             <SearchInput
@@ -65,23 +62,15 @@ const Home: FC<HomeData> = (props: HomeData) => {
                                 value={''}
                                 setValue={() => {}}/>
                         </div>
-                        <div>
-                            <Select elements={props.props.cities} title={'Город'}/>
-                        </div>
-                        <div>
-                            <Select elements={props.props.types} title={'Тип'}/>
-                        </div>
+                        <ButtonGreen onClick={() => {}}>Найти</ButtonGreen>
                     </div>
                 </div>
-            </div>
-            <div className='absolute mt-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
-                <div className='my-10 text-3xl'>
-                    ПОСЛЕДНИЕ ОБЪЯВЛЕНИЯ
-                </div>
-                <div className='text-center text-lg my-10'>
-                    Возможно, Вы искали именно их?
+                <div className='mt-20'>
+                    <div className='my-10 text-3xl text-center'>ПОСЛЕДНИЕ ОБЪЯВЛЕНИЯ</div>
+                    <div className='text-center text-lg my-10'>Возможно, Вы искали именно их?</div>
                 </div>
             </div>
+
         </Layout>
     </>
 };

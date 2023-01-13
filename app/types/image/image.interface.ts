@@ -1,5 +1,6 @@
 export interface IImage {
     imageUuid: string;
+    buffer: string;
     date: string;
 }
 

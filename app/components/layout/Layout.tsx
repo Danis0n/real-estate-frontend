@@ -13,7 +13,7 @@ const Layout: FC<PropsWithChildren<{title: string}>> = ({title, children}) => {
         <main>
             <section>
                 <Header items={headerItems}/>
-                <div>{children}</div>
+                <div className='mb-auto'>{children}</div>
                 <Footer/>
             </section>
         </main>

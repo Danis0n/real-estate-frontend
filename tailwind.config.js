@@ -11,6 +11,7 @@ module.exports = {
       },
       backgroundImage: {
         'home-bg': 'url(../public/bg.jpg)',
+        'footer-bg': 'url(../public/footer-bg.jpg)',
       }
     },
   },

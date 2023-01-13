@@ -9,11 +9,11 @@ interface IType {
 interface Params {
     elements: IType[];
     title: string
+    setValue: (e: string) => void;
 }
 
 const Select: FC<Params> = (props: Params) => {
-    return <select id="countries"
-                   className={styles.select}>
+    return <select className={styles.select} onChange={ (e) => props.setValue(e.currentTarget.value) }>
         <option defaultValue={props.title}>{props.title}</option>
         {props.elements.map((element) => {
           return <option key={element.value} value={element.value}>{element.title}</option>

@@ -1,15 +1,14 @@
 import React, {FC, useState} from 'react';
 import {BsChevronCompactLeft, BsChevronCompactRight} from "react-icons/bs";
 import { RxDotFilled } from 'react-icons/rx';
-import {IImage} from "../../../types/image/image.interface";
+import {IImage} from "../../../../types/image/image.interface";
+
 
 interface SliderProps {
     images: IImage[];
-    width: number;
-    height: number;
 }
 
-const Slider: FC<SliderProps> = ({images, width, height}) => {
+const SliderMini: FC<SliderProps> = ({images}) => {
 
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -30,7 +29,7 @@ const Slider: FC<SliderProps> = ({images, width, height}) => {
     };
 
     return (
-        <div className={`max-w-[1200px] h-[780px] py-16 px-4 relative group`}>
+        <div className={`max-w-[500px] h-[400px] py-16 px-4 relative group`}>
             <div
                 style={{ backgroundImage: `url(data:image/jpeg;base64,${images[currentIndex].buffer})` }}
                 className='w-full h-full rounded-2xl bg-center bg-cover duration-500'
@@ -58,4 +57,4 @@ const Slider: FC<SliderProps> = ({images, width, height}) => {
     );
 };
 
-export default Slider;
+export default SliderMini;

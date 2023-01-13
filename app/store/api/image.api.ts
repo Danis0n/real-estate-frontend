@@ -10,12 +10,12 @@ export const imageApi = api.injectEndpoints({
             }),
             providesTags: () => [{type: 'Image'}]
         }),
-        getImagesByPost: builder.query<ImagesViewRowResponse, string[]>({
+        getImagesByPost: builder.mutation<ImagesViewRowResponse, string[]>({
             query: (UUIDs) => ({
                 url: `${IMAGE}/display/row`,
                 body: UUIDs
             }),
-            providesTags: () => [{type: 'Image'}]
+            invalidatesTags: () => [{type: 'Image'}]
         })
     }),
 })
