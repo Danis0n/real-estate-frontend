@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState, useEffect} from 'react';
 import Layout from "../../layout/Layout";
 import {IHome} from "./home.interface";
 import ButtonGrey from "../../ui/button/ButtonGrey";
@@ -6,13 +6,14 @@ import Link from "next/link";
 import ButtonGreen from "../../ui/button/ButtonGreen";
 import SearchInput from "../../ui/search-input/SearchInput";
 import {text} from "stream/consumers";
-import Select from "../../ui/select/Select";
 
 interface HomeData {
     props: IHome;
 }
 
 const Home: FC<HomeData> = (props: HomeData) => {
+
+
 
     return <>
         <Layout title={'Real Estate'}>
@@ -29,11 +30,8 @@ const Home: FC<HomeData> = (props: HomeData) => {
                                 </Link>
                             )
                         })}
-                        <ButtonGrey onClick={() => {
-                        }}>
-                            <Link href={'/rent'} className='text-base'>
-                                Контакты
-                            </Link>
+                        <ButtonGrey onClick={() => {}}>
+                            <Link href={'/'} className='text-base'>Контакты</Link>
                         </ButtonGrey>
                     </div>
                 </div>
@@ -52,17 +50,15 @@ const Home: FC<HomeData> = (props: HomeData) => {
                 </div>
             </div>
             <div className='w-full mb-20'>
-                <div className='mr-auto ml-auto rounded-lg shadow-lg w-[1200px] -mt-10 bg-primary-700'>
-                    <div className="flex gap-10 p-5">
-                        <div>
-                            <SearchInput
-                                type={'text'}
-                                placeholder={'Введите название, улицу и т.д.'}
-                                isRequired={false}
-                                value={''}
-                                setValue={() => {}}/>
-                        </div>
-                        <ButtonGreen onClick={() => {}}>Найти</ButtonGreen>
+                <div className='mr-auto ml-auto rounded-lg shadow-lg w-[1000px] -mt-10 bg-primary-700'>
+                    <div className="flex gap-10 p-5 justify-center justify-items-center">
+                        <SearchInput
+                            type={'text'}
+                            placeholder={'Введите название, улицу и т.д.'}
+                            isRequired={false}
+                            value={''}
+                            setValue={() => {}}
+                        />
                     </div>
                 </div>
                 <div className='mt-20'>

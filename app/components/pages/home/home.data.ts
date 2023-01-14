@@ -18,11 +18,11 @@ export const homeData: IHome = {
     nav: [
         {
             title: 'Купить',
-            link: '/posts?deal=buy'
+            link: '/posts?dealType=buy'
         },
         {
             title: 'Аренда',
-            link: '/posts?deal=rent'
+            link: '/posts?dealType=rent'
         },
     ],
     types: [

@@ -18,7 +18,7 @@ export interface IPost {
 export interface IPostInfo {
     infoId: string;
     price: number;
-    floorHeight: string;
+    floorHeight: number;
     maxFloor: number;
     currentFloor: number;
     houseType: string;
@@ -26,9 +26,9 @@ export interface IPostInfo {
     isBalcony: boolean;
     isRenovation: boolean;
     roomQuantity: string;
-    dimensions: string;
-    kitchenDimensions: string;
-    livingDimensions: string;
+    dimensions: number;
+    kitchenDimensions: number;
+    livingDimensions: number;
     buildAt: string;
     description: string;
 }

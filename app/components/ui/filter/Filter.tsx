@@ -16,23 +16,35 @@ interface IBuildQueryProps {
 const buildQuery = (props: IBuildQueryProps): string => {
     let params: string = '?'
 
-    if (props.params.rooms !== '') {
+    if (props.params.rooms !== 'Не выбрано' && props.params.rooms !== '') {
         params += `rooms=${props.params.rooms}&`;
     }
-    if (props.params.height !== '') {
+    if (props.params.height !== 'Не выбрано' && props.params.height !== '') {
         params += `height=${props.params.height}&`;
     }
-    if (props.params.minPrice !== '' || props.params.maxPrice !== '') {
-        params += `price=${props.params.minPrice}_${props.params.maxPrice}&`;
+    if (props.params.minPrice !== '') {
+        params += `minPrice=${props.params.minPrice}&`;
     }
-    if (props.params.minCommon !== '' || props.params.maxCommon !== '') {
-        params += `dimensions=${props.params.minCommon}_${props.params.maxCommon}&`;
+    if (props.params.maxPrice !== '') {
+        params += `maxPrice=${props.params.maxPrice}&`;
     }
-    if (props.params.minLiving !== '' || props.params.maxLiving !== '') {
-        params += `livingDimensions=${props.params.minLiving}_${props.params.maxLiving}&`;
+    if (props.params.minCommon !== '') {
+        params += `minCommon=${props.params.minCommon}&`;
     }
-    if (props.params.minKitchen !== '' || props.params.maxKitchen !== '') {
-        params += `kitchenDimensions=${props.params.minKitchen}_${props.params.maxKitchen}&`;
+    if (props.params.maxCommon !== '') {
+        params += `maxCommon=${props.params.maxCommon}&`;
+    }
+    if (props.params.minLiving !== '') {
+        params += `minLiving=${props.params.minLiving}&`;
+    }
+    if (props.params.maxLiving !== '') {
+        params += `maxLiving=${props.params.maxLiving}&`;
+    }
+    if (props.params.minKitchen !== '') {
+        params += `minKitchen=${props.params.minKitchen}&`;
+    }
+    if (props.params.maxKitchen !== '') {
+        params += `maxKitchen=${props.params.maxKitchen}&`;
     }
     if (props.params.parking) {
         params += `parking=true&`;
@@ -75,7 +87,7 @@ const Filter: FC<FilterProps> = (props: FilterProps) => {
     return (
         <div className={'shadow-lg p-10 w-[1100px] bg-white rounded-lg ring-1 ring-black'}>
             <div className={'flex gap-5 mb-5'}>
-                <div>Площадь</div>
+                <div>Площадь: </div>
                 <div>Общая</div>
                 <div>
                     <DimensionInput

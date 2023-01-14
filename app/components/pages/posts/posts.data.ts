@@ -3,7 +3,7 @@ import {IPostsPage} from "./posts.interface";
 export const postsData: IPostsPage = {
     sort: [
         {
-            title: 'По цене',
+            title: 'По убыванию цены',
             value: 'price',
         },
         {
@@ -14,11 +14,11 @@ export const postsData: IPostsPage = {
     deal: [
         {
             title: 'Купить',
-            value: 'buy'
+            value: 'Купить'
         },
         {
             title: 'Аренда',
-            value: 'rent'
+            value: 'Аренда'
         },
     ]
 }
