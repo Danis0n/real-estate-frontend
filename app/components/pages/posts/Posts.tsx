@@ -1,16 +1,15 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import Layout from '../../layout/Layout';
 import { postApi } from "../../../store/api/post.api";
 import ButtonGreen from "../../ui/button/ButtonGreen";
-import SearchInput from "../../ui/search-input/SearchInput";
 import Select from "../../ui/select/Select";
-import {IPostsPage} from "./posts.interface";
+import { IPostsPage } from "./posts.interface";
 import Modal from "../../ui/modal/Modal";
 import Filter from "../../ui/filter/Filter";
-import {filterData} from "../../ui/filter/filter.data";
+import { filterData } from "../../ui/filter/filter.data";
 import FilteredPosts from "../../ui/filtered-posts/FilteredPosts";
-import {IPost} from "../../../types/post/post.interface";
-import {useRouter} from "next/router";
+import { IPost } from "../../../types/post/post.interface";
+import { useRouter } from "next/router";
 
 interface IPostsPageProps {
     props: IPostsPage;
@@ -36,7 +35,6 @@ const Posts: FC<IPostsPageProps> = (props: IPostsPageProps) => {
         else if (dealType === 'buy') setDeal('Купить');
     }, []);
 
-
     // @ts-ignore
     let sortedAndSearchedPosts: IPost[] = !!searchedPosts?.posts ? searchedPosts.posts : posts?.posts;
 
@@ -51,7 +49,11 @@ const Posts: FC<IPostsPageProps> = (props: IPostsPageProps) => {
                 </div>
             </Modal>
         </div>
-            <div className={'m-16 ml-72 text-lg'}>Объявлений по фильтрам найдено: {sortedAndSearchedPosts?.length}</div>
+        {!sortedAndSearchedPosts?.length ?
+            <div className={'m-16 ml-72 text-lg'}>Объявлений не найдено</div>
+            :
+            <div className={'m-16 ml-72 text-lg'}>Объявлений найдено: {sortedAndSearchedPosts?.length}</div>
+        }
         <div className={'ml-60'}>
             <FilteredPosts props={{posts: sortedAndSearchedPosts, deal: deal, sort: sort}}/>
         </div>

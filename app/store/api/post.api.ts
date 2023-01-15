@@ -17,6 +17,18 @@ export const postApi = api.injectEndpoints({
             }),
             providesTags: () => [{type: 'Post'}]
         }),
+        getLatest: builder.query<FindAllPostResponse, any>({
+            query: () => ({
+                url: `${POST}/get-latest`
+            }),
+            providesTags: () => [{type: 'Post'}]
+        }),
+        getPostsByName: builder.query<FindAllPostResponse, string>({
+            query: (name) => ({
+                url: `${POST}/get-by-name/${name}`
+            }),
+            providesTags: () => [{type: 'Post'}]
+        }),
         getPostById: builder.query<FindOnePostResponse, string>({
             query: (postUUID) => ({
                 url: `${POST}/get/${postUUID}`

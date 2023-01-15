@@ -1,0 +1,23 @@
+.search_top {
+  @apply relative w-full;
+
+  > label {
+    @apply block relative;
+
+    input {
+      @apply rounded-lg py-2 px-4 w-full block outline-0 text-black shadow bg-white;
+      transition: box-shadow 0.4s ease;
+    }
+
+  }
+}
+
+.result {
+  @apply rounded-lg absolute w-[500px] mr-auto ml-auto z-20 p-5 mt-3 bg-primary-700 ;
+  //left: 10%;
+
+  > div {
+    @apply mr-4 last:mr-0;
+    width: 100%;
+  }
+}
