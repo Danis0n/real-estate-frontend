@@ -14,7 +14,7 @@ const Login: FC = () => {
 
     const [loginVal, setLoginVal] = useState<string>('');
     const [passwordVal, setPasswordVal] = useState<string>('');
-
+    console.log(loginVal, passwordVal)
     return (
         <div className="relative bg-white rounded-lg shadow dark:bg-gray-700">
             <div className="px-6 py-6 lg:px-8">
@@ -36,7 +36,7 @@ const Login: FC = () => {
                     </div>
                     <div className='text-center'>
                     <ButtonGreen
-                        onClick={() => handleLogin({login: loginVal, password: passwordVal})}
+                        onClick={() => login({login: loginVal, password: passwordVal})}
                     >Войти в аккаунт</ButtonGreen>
                     </div>
                     <div className="text-sm font-medium text-gray-500 dark:text-gray-300">

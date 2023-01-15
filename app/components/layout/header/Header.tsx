@@ -11,6 +11,7 @@ import Options from '../../../../public/options.svg'
 import {IHeaderItem} from "./header.interface";
 import LogoutButton from "../../ui/logout-buttom/LogoutButton";
 import Logo from '../../../../public/logo.svg';
+import Dropdown from "../../ui/dropdown/Dropdown";
 
 interface HeaderProps {
     items: IHeaderItem[];
@@ -47,9 +48,8 @@ const Header: FC<HeaderProps> = (items: HeaderProps) => {
                             )
                         })}
                         <ButtonGreen onClick={() => {}}>
-                            <Image src={Options} alt={'options'} width={24} height={24}/>
+                            <Dropdown/>
                         </ButtonGreen>
-                        <LogoutButton>Выйти</LogoutButton>
                     </div>
                     :
                     <div>

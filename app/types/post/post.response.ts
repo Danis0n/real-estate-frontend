@@ -16,6 +16,11 @@ export interface CreatePostResponse {
     post: IPost | undefined;
 }
 
+export interface SearchPostNameResponse {
+    posts: IPost[];
+    isSuccess: boolean;
+}
+
 export interface UpdateImagesResponse {
     status: number;
     error: string;

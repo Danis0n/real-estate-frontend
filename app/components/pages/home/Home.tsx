@@ -1,12 +1,10 @@
-import React, {FC, useState} from 'react';
+import React, { FC } from 'react';
 import Layout from "../../layout/Layout";
 import {IHome} from "./home.interface";
 import ButtonGrey from "../../ui/button/ButtonGrey";
 import Link from "next/link";
 import ButtonGreen from "../../ui/button/ButtonGreen";
-import SearchInput from "../../ui/search-input/SearchInput";
-import {text} from "stream/consumers";
-import {postApi} from "../../../store/api/post.api";
+import { postApi } from "../../../store/api/post.api";
 import PostItem from "../../ui/post-item/PostItem";
 import Search from "../../search/Search";
 
@@ -16,12 +14,8 @@ interface HomeData {
 
 const Home: FC<HomeData> = (props: HomeData) => {
 
-    // const { data: searchedPosts } = postApi.
-
-    const [search, setSearch] = useState<string>('');
-
     const { data: latestPosts } = postApi.useGetLatestQuery(null);
-    console.log(latestPosts);
+
     return <>
         <Layout title={'Real Estate'}>
             <div className='bg-center bg-home-bg h-[870px]'>

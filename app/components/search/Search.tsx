@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {useSearch} from "./useSearch";
 import styles from './Search.module.scss'
+import PostSearchItem from "../ui/post-search-item/PostSearchItem";
 
 const Search: FC = () => {
 
@@ -19,7 +20,9 @@ const Search: FC = () => {
             {isSuccess && (
                 <div className={styles.result}>
                     {posts?.length? (
-                        posts.map((post) => <div key={post.postUUID}>{post.name}</div>)
+                        posts.map((post) => <div key={post.postUUID} className={'mb-5'}>
+                            <PostSearchItem post={post}/>
+                        </div>)
                     ) : (
                         <div>Посты не найдены!</div>
                     )}

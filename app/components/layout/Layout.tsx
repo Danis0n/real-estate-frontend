@@ -1,8 +1,8 @@
-import React, {FC, PropsWithChildren, useEffect} from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import Head from "next/head";
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
-import {headerItems} from "./header/header.data";
+import { headerItems } from "./header/header.data";
 
 const Layout: FC<PropsWithChildren<{title: string}>> = ({title, children}) => {
 
