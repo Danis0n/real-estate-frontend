@@ -1,4 +1,4 @@
-import {IPost} from "../../../types/post/post.interface";
+import { IPost } from "../../../types/post/post.interface";
 
 export interface IPostPage {
     post: IPost

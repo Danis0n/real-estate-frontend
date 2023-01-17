@@ -5,7 +5,8 @@ interface IType {
     value: string;
 }
 
-export interface IPostsPage {
+export interface IPostsProps {
     deal: IType[];
     sort: IType[];
+    cities: IType[];
 }

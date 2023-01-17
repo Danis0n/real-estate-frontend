@@ -1,18 +1,19 @@
 import { Menu, Transition } from '@headlessui/react'
 import React, { Fragment } from 'react'
 import Image from "next/image";
-import Options from "../../../../public/options.svg";
 import {useAuth} from "../../../hooks/useAuth";
 import {useActions} from "../../../hooks/useAction";
 import {api} from "../../../store/api/api";
 import Link from "next/link";
+import Options from "../../../../public/options.svg";
 import Settings from '../../../../public/settings.svg';
 import User from '../../../../public/user.svg';
 import Logout from '../../../../public/logout.svg';
+import AddPost from '../../../../public/add-post.svg';
 
 const Dropdown = () => {
 
-    const { user, isAuth } = useAuth();
+    const { user } = useAuth();
 
     const { logout } = useActions();
     const [logoutRequest, { status }] = api.useLogoutMutation()
@@ -26,8 +27,9 @@ const Dropdown = () => {
         <div>
             <Menu as="div" className="relative text-left z-50">
                 <div>
-                    <Menu.Button className="rounded-md text-sm font-medium text-white">
-                        <Image src={Options} alt={'options'} width={24} height={24}/>
+                    <Menu.Button
+                        className="pl-3 pr-3 mt-2 rounded-md bg-primary-700 opacity-60 hover:opacity-100 text-sm font-medium text-white">
+                        <Image src={Options} alt={'options'} width={30} height={30}/>
                     </Menu.Button>
                 </div>
                 <Transition
@@ -39,7 +41,7 @@ const Dropdown = () => {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                 >
-                    <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 mt-2 w-72 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                         <div className="px-1 py-1 ">
                             <Menu.Item>
                                 {({ active }) => (
@@ -51,6 +53,20 @@ const Dropdown = () => {
                                         <Image src={User} alt={'user'} width={24} height={24}/>
                                         {user?.userInfo.firstName} {user?.userInfo.lastName}
                                     </button>
+                                )}
+                            </Menu.Item>
+                            <Menu.Item>
+                                {({ active }) => (
+                                    <Link href={'/p/create'}>
+                                        <button
+                                            className={`${
+                                                active ? 'bg-primary-700 text-white' : 'text-gray-900'
+                                            } group flex w-full items-center rounded-md px-2 py-2 text-lg`}
+                                        >
+                                            <Image src={AddPost} alt={'add-post'} width={24} height={24}/>
+                                            Добавить объявление
+                                        </button>
+                                    </Link>
                                 )}
                             </Menu.Item>
                             <Menu.Item>

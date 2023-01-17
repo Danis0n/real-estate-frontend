@@ -15,4 +15,8 @@ export const PostService = {
     async getPostsByUserId (uuid: string) {
         return axiosClassic.get<FindAllPostResponse>(`/${POST}/get-all/user/${uuid}`);
     },
+
+    async getLatest () {
+        return axiosClassic.get<FindAllPostResponse>(`/${POST}/get-latest`);
+    },
 };

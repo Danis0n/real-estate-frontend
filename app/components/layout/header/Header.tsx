@@ -7,9 +7,7 @@ import ButtonGrey from "../../ui/button/ButtonGrey";
 import { useAuth } from "../../../hooks/useAuth";
 import Modal from "../../ui/modal/Modal";
 import Login from "../../ui/form/login/Login";
-import Options from '../../../../public/options.svg'
 import {IHeaderItem} from "./header.interface";
-import LogoutButton from "../../ui/logout-buttom/LogoutButton";
 import Logo from '../../../../public/logo.svg';
 import Dropdown from "../../ui/dropdown/Dropdown";
 
@@ -37,7 +35,7 @@ const Header: FC<HeaderProps> = (items: HeaderProps) => {
                 </div>
                 <div className={styles.action}>
                 {isAuth ?
-                    <div>
+                    <div className={'flex justify-items-center'}>
                         {items.items.map((item) => {
                             return (
                                 <ButtonGrey key={item.link} onClick={() => {}}>
@@ -47,9 +45,9 @@ const Header: FC<HeaderProps> = (items: HeaderProps) => {
                                 </ButtonGrey>
                             )
                         })}
-                        <ButtonGreen onClick={() => {}}>
+                        <div className={''}>
                             <Dropdown/>
-                        </ButtonGreen>
+                        </div>
                     </div>
                     :
                     <div>

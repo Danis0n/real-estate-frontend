@@ -20,6 +20,11 @@ const FilteredPosts: FC<IFilteredPostsProps> = (props: IFilteredPostsProps) => {
         else posts = [...posts].sort((a,b) => b.info.dimensions - a.info.dimensions);
     }
 
+    if (props.props.city !== '' && props.props.city !== 'Город' && !!posts)
+        posts = posts.filter(post => post.city === props.props.city)
+
+    props.props.setQuantity(posts?.length);
+
     return (
         <div>
             {!!posts && posts.map((post) => {

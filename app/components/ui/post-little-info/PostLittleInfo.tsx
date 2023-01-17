@@ -16,9 +16,9 @@ interface ILittleInfo {
     price: string;
     pricePerM: string;
     userUUID: string;
-    roomQuantity: string;
+    roomQuantity: number;
     type: string;
-    dimensions: string;
+    dimensions: number;
     city: string;
     location: string;
 }

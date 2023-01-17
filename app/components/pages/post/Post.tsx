@@ -25,7 +25,6 @@ const Post: FC<IPostPage> = ({post}) => {
                 <div className='shadow-lg max-w-[1200px] h-[500px] pt-5 pl-10'>
                     <PostDescriptionInfo post={post}/>
                 </div>
-
                 <div className='absolute right-32 top-40 -mt-24 shadow-lg rounded-md'>
                     <div className=''>
                         <PostLittleInfo
@@ -38,7 +37,7 @@ const Post: FC<IPostPage> = ({post}) => {
                             type={post.type}
                             roomQuantity={post.info.roomQuantity}
                             price={String(post.info.price)}
-                            pricePerM={ String(post.info.price / Number(post.info.dimensions)) }
+                            pricePerM={ (post.info.price / post.info.dimensions).toFixed(0) }
                             userUUID={post.userUUID}
                         />
                     </div>

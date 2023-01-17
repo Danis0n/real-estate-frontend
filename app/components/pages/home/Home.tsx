@@ -1,27 +1,20 @@
 import React, { FC } from 'react';
 import Layout from "../../layout/Layout";
-import {IHome} from "./home.interface";
 import ButtonGrey from "../../ui/button/ButtonGrey";
 import Link from "next/link";
 import ButtonGreen from "../../ui/button/ButtonGreen";
-import { postApi } from "../../../store/api/post.api";
 import PostItem from "../../ui/post-item/PostItem";
 import Search from "../../search/Search";
+import { IHomePage } from "../../../../pages";
 
-interface HomeData {
-    props: IHome;
-}
-
-const Home: FC<HomeData> = (props: HomeData) => {
-
-    const { data: latestPosts } = postApi.useGetLatestQuery(null);
+const Home: FC<IHomePage> = ({data, randomPosts}) => {
 
     return <>
         <Layout title={'Real Estate'}>
             <div className='bg-center bg-home-bg h-[870px]'>
                 <div className='absolute right-96 translate-x-20'>
                     <div className="mt-20 flex gap-2">
-                        {props.props.nav.map((navItem) => {
+                        {data.nav.map((navItem) => {
                             return (
                                 <Link key={navItem.title} href={navItem.link} className='text-base'>
                                 <ButtonGrey key={navItem.title} onClick={() => {}}>{navItem.title}</ButtonGrey>
@@ -58,7 +51,7 @@ const Home: FC<HomeData> = (props: HomeData) => {
                     <div className='text-center text-lg my-10'>Возможно, Вы искали именно их?</div>
                 </div>
                 <div className={'ml-60'}>
-                    {!!latestPosts && latestPosts.posts.map((post) => {
+                    {!!randomPosts && randomPosts.map((post) => {
                         return <PostItem key={post.postUUID} post={post} />
                     })}
                 </div>

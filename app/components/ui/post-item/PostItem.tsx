@@ -1,9 +1,6 @@
 import React, {FC} from 'react';
 import {IPost} from "../../../types/post/post.interface";
 import Link from "next/link";
-import Image from "next/image";
-import ButtonGreen from "../button/ButtonGreen";
-import Heart from '../../../../public/heart.svg';
 import SliderMini from "../slider/slider-mini/SliderMini";
 
 interface PostItemProps {
@@ -13,7 +10,7 @@ interface PostItemProps {
 const PostItem: FC<PostItemProps> = ({post}) => {
 
     return (
-        <div className={'relative hover:shadow-2xl max-w-[1400px] rounded-xl mb-10'}>
+        <div className={'relative hover:shadow-2xl max-w-[1400px] bg-white rounded-xl mb-10'}>
             <div className={''}>
                 <SliderMini images={post.images}/>
             </div>
