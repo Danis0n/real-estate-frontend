@@ -45,14 +45,16 @@ const Dropdown = () => {
                         <div className="px-1 py-1 ">
                             <Menu.Item>
                                 {({ active }) => (
-                                    <button
-                                        className={`${
-                                            active ? 'bg-primary-700 text-white' : 'text-gray-900'
-                                        } group flex w-full items-center rounded-md px-2 py-2 text-lg`}
-                                    >
-                                        <Image src={User} alt={'user'} width={24} height={24}/>
-                                        {user?.userInfo.firstName} {user?.userInfo.lastName}
-                                    </button>
+                                    <Link href={`/user/${user?.id}`}>
+                                        <button
+                                            className={`${
+                                                active ? 'bg-primary-700 text-white' : 'text-gray-900'
+                                            } group flex w-full items-center rounded-md px-2 py-2 text-lg`}
+                                        >
+                                            <Image src={User} alt={'user'} width={24} height={24}/>
+                                            {user?.userInfo.firstName} {user?.userInfo.lastName}
+                                        </button>
+                                    </Link>
                                 )}
                             </Menu.Item>
                             <Menu.Item>

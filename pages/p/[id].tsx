@@ -5,8 +5,8 @@ import {IPostPage} from "../../app/components/pages/post/post.interface";
 import Post from "../../app/components/pages/post/Post";
 import {IPost} from "../../app/types/post/post.interface";
 
-const PostPage: NextPage<IPostPage> = (props) => {
-    return <Post post={props.post}/>
+const PostPage: NextPage<IPostPage> = ({post}) => {
+    return <Post post={post}/>
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {

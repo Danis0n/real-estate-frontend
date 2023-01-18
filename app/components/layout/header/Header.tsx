@@ -45,7 +45,7 @@ const Header: FC<HeaderProps> = (items: HeaderProps) => {
                                 </ButtonGrey>
                             )
                         })}
-                        <div className={''}>
+                        <div>
                             <Dropdown/>
                         </div>
                     </div>
