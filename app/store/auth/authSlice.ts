@@ -1,7 +1,6 @@
 import {createSlice} from "@reduxjs/toolkit";
 import {IUser} from "../../types/user/user.interface";
 import {login, logout, refresh, register} from "./auth.actions";
-import {RefreshResponse} from "../../types/auth/auth.response";
 
 interface AuthState {
     user: IUser | null;
@@ -9,9 +8,11 @@ interface AuthState {
     isAuth: boolean;
     accessToken: string;
     refreshToken: string;
+    error: string;
 }
 
 const initialState: AuthState = {
+    error: "",
     accessToken: '',
     refreshToken: '',
     isAuth: false,
@@ -59,8 +60,12 @@ export const authSlice = createSlice({
             .addCase(register.pending, state => {
                 state.isLoading = true;
             })
-            .addCase(register.fulfilled, state => {
-
+            .addCase(register.fulfilled, (state, {payload}) => {
+                if (payload.error) state.error = payload.error;
+                else state.error = '';
+            })
+            .addCase(register.rejected, state => {
+                state.error = 'Ошибка при создании';
             })
             .addCase(refresh.pending, state => {
                 state.isLoading = true;

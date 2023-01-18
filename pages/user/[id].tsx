@@ -4,7 +4,6 @@ import {GetStaticPaths, GetStaticProps, NextPage} from "next";
 import {UserService} from "../../app/services/user.service";
 import {IUser} from "../../app/types/user/user.interface";
 import {PostService} from "../../app/services/post.service";
-import {IPost} from "../../app/types/post/post.interface";
 
 const UserPage: NextPage<IUserPage> = ({user, posts}) => {
     return <User user={user} posts={posts}/>
@@ -51,7 +50,7 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
         return {
             props: {
                 user: user.user,
-                posts: posts.posts,
+                posts: posts.posts ? posts.posts : [],
             } as IUserPage
         }
 

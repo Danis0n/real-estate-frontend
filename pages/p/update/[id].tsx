@@ -6,11 +6,11 @@ import {IPost} from "../../../app/types/post/post.interface";
 import {IPostPage} from "../../../app/components/pages/post/post.interface";
 import UpdatePost from "../../../app/components/pages/post/update/UpdatePost";
 
-const UpdatePage: NextPageAuth<IPostPage> = ({post}) => {
+const UpdatePostPage: NextPageAuth<IPostPage> = ({post}) => {
     return <UpdatePost post={post}/>;
 };
 
-UpdatePage.allowRoles = [ 'admin', 'user', 'company'];
+UpdatePostPage.allowRoles = [ 'admin', 'user', 'company'];
 
 export const getStaticPaths: GetStaticPaths = async () => {
     try {
@@ -63,4 +63,4 @@ export const getStaticProps: GetStaticProps = async ({params}) => {
 }
 
 
-export default UpdatePage;
+export default UpdatePostPage;

@@ -37,7 +37,8 @@ const User: FC<IUserPage> = ({user, posts}) => {
                                     <ButtonGreen onClick={() => {setShowPhone(true)}}>Показать телефон</ButtonGreen>
                                 </div>
                             }
-                            {me?.id === user.id ? <div></div>:
+                            {me?.id === user.id ? 
+                                <div><ButtonGreen onClick={() => {}}>Редактировать</ButtonGreen></div>:
                                 <div>
                                     <ButtonGreen onClick={() => {}}>Откликнуться</ButtonGreen>
                                 </div>
@@ -47,7 +48,9 @@ const User: FC<IUserPage> = ({user, posts}) => {
                 </div>
                 <div className={'text-2xl mt-4'}>
                     <div className={'mb-4'}>Официальный сайт: {user.userUr.link}</div>
-                    <div>Адрес: {user.userUr.address}</div>
+                    <div>Адрес: {user.userUr.address ? user.userUr.address : (
+                        <div className={'text-xl'}>Пользователь еще не разместил о себе информацию</div>
+                    )}</div>
                 </div>
             </div>
             <div  className={'shadow-xl mb-2 p-10 bg-white '}>
@@ -55,7 +58,11 @@ const User: FC<IUserPage> = ({user, posts}) => {
                     О застройщике
                 </div>
                 <div>
-                    {user.userUr.description}
+                    {user.userUr.description ? (
+                        <div>user.userUr.description</div>
+                    ) : (
+                        <div>Пользователь еще не разместил о себе информацию</div>
+                    )}
                 </div>
             </div>
             <div  className={'shadow-xl mb-2 p-10 bg-white '}>
@@ -66,6 +73,9 @@ const User: FC<IUserPage> = ({user, posts}) => {
                     {!!posts && posts.map((post) => {
                         return <PostItem key={post.postUUID} post={post} />
                     })}
+                    {posts.length == 0 && (
+                        <div>Пользователь еще не разместил объявления</div>
+                    )}
                 </div>
             </div>
         </div>

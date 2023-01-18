@@ -55,7 +55,9 @@ const Header: FC<HeaderProps> = (items: HeaderProps) => {
                         <Modal isVisible={isModal} setVisible={setIsModal}>
                             <Login/>
                         </Modal>
-                        <ButtonGreen onClick={() => {}}>Регистрация</ButtonGreen>
+                        <ButtonGreen onClick={() => {}}>
+                            <Link href={'/user/create'}>Регистрация</Link>
+                        </ButtonGreen>
                     </div>
                 }
                 </div>

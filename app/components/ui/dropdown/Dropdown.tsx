@@ -45,16 +45,30 @@ const Dropdown = () => {
                         <div className="px-1 py-1 ">
                             <Menu.Item>
                                 {({ active }) => (
-                                    <Link href={`/user/${user?.id}`}>
-                                        <button
-                                            className={`${
-                                                active ? 'bg-primary-700 text-white' : 'text-gray-900'
-                                            } group flex w-full items-center rounded-md px-2 py-2 text-lg`}
-                                        >
-                                            <Image src={User} alt={'user'} width={24} height={24}/>
-                                            {user?.userInfo.firstName} {user?.userInfo.lastName}
-                                        </button>
-                                    </Link>
+                                    <div>
+                                        {user?.roles.includes('company') ? (
+                                            <Link href={`/user/${user?.id}`}>
+                                                <button
+                                                    className={`${
+                                                        active ? 'bg-primary-700 text-white' : 'text-gray-900'
+                                                    } group flex w-full items-center rounded-md px-2 py-2 text-lg`}
+                                                >
+                                                    <Image src={User} alt={'user'} width={24} height={24}/>
+                                                    {user?.userInfo.firstName} {user?.userInfo.lastName}
+                                                </button>
+                                            </Link>
+                                        ) : (
+                                            <button
+                                                className={`${
+                                                    active ? 'bg-primary-700 text-white' : 'text-gray-900'
+                                                } group flex w-full items-center rounded-md px-2 py-2 text-lg`}
+                                            >
+                                                <Image src={User} alt={'user'} width={24} height={24}/>
+                                                {user?.userInfo.firstName} {user?.userInfo.lastName}
+                                            </button>
+                                        )}
+
+                                    </div>
                                 )}
                             </Menu.Item>
                             <Menu.Item>
