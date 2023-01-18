@@ -6,7 +6,7 @@ import ButtonGreen from "../../ui/button/ButtonGreen";
 import ButtonGrey from "../../ui/button/ButtonGrey";
 import { useAuth } from "../../../hooks/useAuth";
 import Modal from "../../ui/modal/Modal";
-import Login from "../../ui/form/login/Login";
+import Login from "../../login/Login";
 import {IHeaderItem} from "./header.interface";
 import Logo from '../../../../public/logo.svg';
 import Dropdown from "../../ui/dropdown/Dropdown";

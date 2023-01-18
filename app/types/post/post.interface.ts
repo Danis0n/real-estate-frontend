@@ -25,6 +25,7 @@ export interface IPostInfo {
     isParking: boolean;
     isBalcony: boolean;
     isRenovation: boolean;
+    isLift: boolean;
     roomQuantity: number;
     dimensions: number;
     kitchenDimensions: number;

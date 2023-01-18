@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, {FC, useEffect} from 'react';
 import { IFilteredPosts } from "./filtered-posts.interface";
 import { IPost } from "../../../types/post/post.interface";
 import PostItem from "../post-item/PostItem";
@@ -23,7 +23,9 @@ const FilteredPosts: FC<IFilteredPostsProps> = (props: IFilteredPostsProps) => {
     if (props.props.city !== '' && props.props.city !== 'Город' && !!posts)
         posts = posts.filter(post => post.city === props.props.city)
 
-    props.props.setQuantity(posts?.length);
+    useEffect(() => {
+        props.props.setQuantity(posts?.length);
+    },[posts, props.props.posts]);
 
     return (
         <div>

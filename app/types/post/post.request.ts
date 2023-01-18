@@ -17,14 +17,14 @@ export interface LockPostStateRequest {
 
 export interface UpdatePostRequest {
     name: string;
-    price: string;
-    floorHeight: string;
+    price: number;
+    floorHeight: number;
     isParking: boolean;
     isBalcony: boolean;
     isRenovation: boolean;
-    dimensions: string;
-    kitchenDimensions: string;
-    livingDimensions: string;
+    dimensions: number;
+    kitchenDimensions: number;
+    livingDimensions: number;
     description: string;
     UUID: string;
     userUUID: string;

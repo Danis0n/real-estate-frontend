@@ -7,6 +7,7 @@ import PostLittleInfo from "../../ui/post-little-info/PostLittleInfo";
 import {useAuth} from "../../../hooks/useAuth";
 import PostDescriptionInfo from "../../ui/post-description-info/PostDescriptionInfo";
 
+// TODO : FIX PROPS FOR POST-LITTLE-INFO (NAME INCLUDES)
 const Post: FC<IPostPage> = ({post}) => {
     const { user } = useAuth();
 
@@ -39,6 +40,7 @@ const Post: FC<IPostPage> = ({post}) => {
                             price={String(post.info.price)}
                             pricePerM={ (post.info.price / post.info.dimensions).toFixed(0) }
                             userUUID={post.userUUID}
+                            postUUID={post.postUUID}
                         />
                     </div>
                 </div>

@@ -3,10 +3,10 @@ import {
     CreatePostResponse,
     FindAllPostResponse,
     FindOnePostResponse,
-    SearchPostNameResponse
+    SearchPostNameResponse, UpdateImagesResponse, UpdatePostResponse
 } from '../../types/post/post.response';
 import { POST } from '../../services/post.service';
-import { CreatePostRequest } from '../../types/post/post.request';
+import {CreatePostRequest, UpdatePostRequest} from '../../types/post/post.request';
 
 export const postApi = api.injectEndpoints({
     endpoints: builder => ({
@@ -46,9 +46,25 @@ export const postApi = api.injectEndpoints({
             }),
             providesTags: () => [{type: 'Post'}]
         }),
-        createPost: builder.mutation<CreatePostResponse,CreatePostRequest>({
+        createPost: builder.mutation<CreatePostResponse, FormData>({
             query: data => ({
                 url: `${POST}/create`,
+                method: 'POST',
+                body: data
+            }),
+            invalidatesTags: () => [{type: 'Post'}]
+        }),
+        updatePost: builder.mutation<UpdatePostResponse, UpdatePostRequest>({
+            query: data => ({
+                url: `${POST}/update`,
+                method: 'POST',
+                body: data
+            }),
+            invalidatesTags: () => [{type: 'Post'}]
+        }),
+        updatePostImages: builder.mutation<UpdateImagesResponse, FormData>({
+            query: data => ({
+                url: `${POST}/update/images`,
                 method: 'POST',
                 body: data
             }),

@@ -21,6 +21,7 @@ interface ILittleInfo {
     dimensions: number;
     city: string;
     location: string;
+    postUUID: string;
 }
 
 const PostLittleInfo: FC<ILittleInfo> = (props: ILittleInfo) => {
@@ -84,11 +85,11 @@ const PostLittleInfo: FC<ILittleInfo> = (props: ILittleInfo) => {
                     </ButtonGreen>
                 </div>}
                 {props.isOwner && <div>
-                    <ButtonGreen onClick={() => {}}>
-                        <div className='w-72 h-8 text-xl'>
-                            Редактировать
-                        </div>
-                    </ButtonGreen>
+                    <Link href={`/p/update/${props.postUUID}`}>
+                        <ButtonGreen onClick={() => {}}>
+                            <div className='w-72 h-8 text-xl'>Редактировать</div>
+                        </ButtonGreen>
+                    </Link>
                 </div>}
                 <hr className='mt-10'/>
                 {props.isCompany ?

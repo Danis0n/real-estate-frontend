@@ -1,6 +1,5 @@
-import {IPost} from "../../../types/post/post.interface";
 
-interface IType {
+export interface IType {
     title: string;
     value: string;
 }
